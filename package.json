@@ -1,0 +1,21 @@
+{
+  "name": "shape-generator",
+  "version": "1.0.0",
+  "description": "Takes user input and generates a shape in .svg format",
+  "main": "index.js",
+  "directories": {
+    "example": "examples",
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.6.2"
+  },
+  "dependencies": {
+    "inquirer": "^9.2.10"
+  }
+}
