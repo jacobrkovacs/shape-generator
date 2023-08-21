@@ -1,5 +1,6 @@
 {
   "name": "shape-generator",
+  "type": "module",
   "version": "1.0.0",
   "description": "Takes user input and generates a shape in .svg format",
   "main": "index.js",
@@ -16,6 +17,7 @@
     "jest": "^29.6.2"
   },
   "dependencies": {
-    "inquirer": "^9.2.10"
+    "inquirer": "^9.2.10",
+    "inquirer-maxlength-input-prompt": "^1.0.2"
   }
 }
