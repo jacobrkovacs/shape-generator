@@ -1,9 +1,10 @@
-import inquirer from "inquirer";
-import maxInquirer from "inquirer-maxlength-input-prompt"
+const fs = require("fs/promises") 
+const inquirer = require("inquirer");
+const maxInquirer = require("inquirer-maxlength-input-prompt");
 inquirer.registerPrompt('maxlength-input', maxInquirer)
-import defaultExport from "./lib/shapes"
+const {Circle, Square, Triangle } = require("./lib/shapes.js");
 
-export class CLI {
+class CLI {
     run() {
         inquirer
             .prompt([
@@ -27,7 +28,7 @@ export class CLI {
                     type: 'list',
                     name: 'shape',
                     message: 'Please choose one from the following choices of shapes',
-                    choices: ["Cricle", "Triangle", "Square"]
+                    choices: ["Circle", "Square", "Triangle"]
                 },
                 {
                     type: 'input',
@@ -42,8 +43,38 @@ export class CLI {
             ])
             .then((response) => {
                 JSON.stringify(response);
-                console.log(response)
-                return response
+                if(response.shape === "Circle") {
+                    const circle = new Circle;
+                    fs.writeFile(`./examples/${response.fileName}.svg`, circle.render(response), err => {
+                        if(err) {
+                            console.log(err)
+                        }
+                    })
+                        console.log(`Generated ${response.fileName}.svg`)
+                }
+                else if(response.shape === "Square") {
+                    const square = new Square;
+                    fs.writeFile(`./examples/${response.fileName}.svg`, square.render(response), err => {
+                        if(err) {
+                            console.log(err)
+                        }
+                    })
+                        console.log(`Generated ${response.fileName}.svg`)
+                }
+                else if(response.shape === "Triangle") {
+                    const triangle = new Triangle;
+                    fs.writeFile(`./examples/${response.fileName}.svg`, triangle.render(response), err => {
+                        if(err) {
+                            console.log(err)
+                        }
+                    })
+                        console.log(`Generated ${response.fileName}.svg`)
+                }else{
+                    console.log("Failed")
+                }
             })
+            
     };
 }
+const shape = new CLI;
+shape.run();
